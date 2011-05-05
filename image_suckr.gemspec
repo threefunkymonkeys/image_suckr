@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Mauricio Miranda"]
   s.email       = ["mmiranda@xoomcode.com"]
   s.homepage    = ""
-  s.summary     = %q{Gets images randomly from the web}
+  s.summary     = %q{Get images randomly from the web}
   s.description = %q{Ruby class to get images randomly from some websites for seeding pourposes.}
 
   s.rubyforge_project = "image_suckr"
