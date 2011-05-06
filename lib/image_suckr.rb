@@ -16,7 +16,7 @@ module ImageSuckr
       "v" => "1.0"
     }
 
-    def getImageUrl(params = {})
+    def get_image_url(params = {})
       params = DEFAULT_PARAMS.merge(params)
       params["q"] = rand(1000).to_s if params["q"].nil?
       url = "http://ajax.googleapis.com/ajax/services/search/images?" + params.to_query
@@ -25,7 +25,7 @@ module ImageSuckr
       imageUrl = result["responseData"]["results"][rand(params["rsz"].to_i)]["url"] 
     end
 
-    def getImage(params = {})
+    def get_image(params = {})
       image = Net::HTTP.get_response(URI.parse(getImageUrl(params))).body
     end
 
