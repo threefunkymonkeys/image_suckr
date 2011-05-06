@@ -1,3 +1,7 @@
+require 'net/http' unless defined?(Net::HTTP)
+require 'json'     unless defined?(JSON)
+require File.dirname(__FILE__) + '/support'  unless "".respond_to? :to_query and [].respond_to? :to_query
+
 module ImageSuckr
   class GoogleSuckr
 
