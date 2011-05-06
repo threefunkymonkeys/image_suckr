@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Mauricio Miranda"]
   s.email       = ["mmiranda@xoomcode.com"]
-  s.homepage    = ""
-  s.summary     = %q{Get images randomly from the web}
-  s.description = %q{Ruby class to get images randomly from some websites for seeding pourposes.}
+  s.homepage    = "https://github.com/maurimiranda/ImageSuckr"
+  s.summary     = %q{Gets images randomly from the web}
+  s.description = %q{ImageSuckr is a ruby gem that allows you to get random images from Google for seeding purposes.}
 
   s.rubyforge_project = "image_suckr"
 
