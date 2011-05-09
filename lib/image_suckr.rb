@@ -23,15 +23,15 @@ module ImageSuckr
       url = "http://ajax.googleapis.com/ajax/services/search/images?" + params.to_query
       resp = Net::HTTP.get_response(URI.parse(url))
       result = JSON.parse(resp.body)
-      imageUrl = result["responseData"]["results"][rand(params["rsz"].to_i)]["url"] 
+      result["responseData"]["results"][rand(params["rsz"].to_i)]["url"] 
     end
 
     def get_image_content(params = {})
-      content = Net::HTTP.get_response(URI.parse(get_image_url(params))).body
+      Net::HTTP.get_response(URI.parse(get_image_url(params))).body
     end
     
     def get_image_file(params = {})
-      file = open(URI.parse(get_image_url(params)))
+      open(URI.parse(get_image_url(params)))
     end
 
   end
