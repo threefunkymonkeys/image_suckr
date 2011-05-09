@@ -28,6 +28,10 @@ _All [Google Image Search API arguments](http://code.google.com/apis/imagesearch
 **To get the image content instead of the URL:**
 
     suckr.get_image_content
+
+**To get a file reference to the image:**
+
+    suckr.get_image_file
     
 Other useful examples
 ---
