@@ -1,5 +1,6 @@
 require 'net/http' unless defined?(Net::HTTP)
 require 'json'     unless defined?(JSON)
+require 'open-uri' unless defined?(OpenURI)
 require File.dirname(__FILE__) + '/support'  unless "".respond_to? :to_query and [].respond_to? :to_query
 
 module ImageSuckr
@@ -25,8 +26,12 @@ module ImageSuckr
       imageUrl = result["responseData"]["results"][rand(params["rsz"].to_i)]["url"] 
     end
 
-    def get_image(params = {})
-      image = Net::HTTP.get_response(URI.parse(getImageUrl(params))).body
+    def get_image_content(params = {})
+      content = Net::HTTP.get_response(URI.parse(get_image_url(params))).body
+    end
+    
+    def get_image_file(params = {})
+      file = open(URI.parse(get_image_url(params)))
     end
 
   end

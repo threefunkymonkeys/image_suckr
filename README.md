@@ -27,23 +27,23 @@ _All [Google Image Search API arguments](http://code.google.com/apis/imagesearch
     
 **To get the image content instead of the URL:**
 
-    suckr.get_image
+    suckr.get_image_content
     
 Other useful examples
 ---
     
-**To get a RMagick image:**
+**To get a [RMagick](http://rmagick.rubyforge.org/) image:**
 
-_You need to install [RMagick](http://rmagick.rubyforge.org/) to use this._
+    image = Magick::Image.from_blob(suckr.get_image_content).first
 
-    image = Magick::Image.from_blob(suckr.get_image).first
+**To get a [MiniMagick](https://github.com/probablycorey/mini_magick) image:**
 
-**To get a MiniMagick image:**
-
-_You need to install [MiniMagick](https://github.com/probablycorey/mini_magick) to use this._
-
-    image = MiniMagick::Image.read(suckr.get_image)
+    image = MiniMagick::Image.read(suckr.get_image_content)
     
 or
     
     image = MiniMagick::Image.open(suckr.get_image_url)
+  
+**To use with [Paperclip](https://github.com/thoughtbot/paperclip):**
+
+    car.picture = suckr.get_image_file({"q" => "car"})
