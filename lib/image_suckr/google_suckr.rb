@@ -1,17 +1,18 @@
 module ImageSuckr
   
   class GoogleSuckr
+    attr_accessor :default_params
 
     def initialize(default_params = {})
       @default_params = {
-        "rsz" => "8",
+        :rsz => "8",
         #"as_filetype" => "png",
         #"imgc" => "color",
         #"imgcolor" => "black",
         #"imgsz" => "medium",
         #"imgtype" => "photo",
         #"safe" => "active",
-        "v" => "1.0"
+        :v => "1.0"
       }.merge(default_params)
     end
 
