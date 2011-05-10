@@ -1,8 +1,8 @@
 Description
 ---
-ImageSuckr is a ruby gem that allows you to get random images from Google for seeding purposes.   
+ImageSuckr is a ruby gem that allows you to get random images from the web for seeding and testing purposes.   
 
-In a future it will support other sources.
+By now, only Google is supported as images source.
 
 Installation
 ---
