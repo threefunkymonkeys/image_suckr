@@ -31,5 +31,18 @@ describe "ImageSuckr" do
       image.default_params[:v].should be_eql params[:v]
       image.default_params[:rsz].should be_eql params[:rsz]
     end
+
+    it "should return a valid URL" do
+      image = ImageSuckr::GoogleSuckr.new
+      open(URI.parse(image.get_image_url)).should be_a Tempfile
+    end
+
+    it "should return a temp file object" do
+      image = ImageSuckr::GoogleSuckr.new
+      file = image.get_image_file
+
+      file.should be_a Tempfile
+    end
+
   end
 end
