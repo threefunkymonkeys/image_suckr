@@ -24,7 +24,8 @@ module ImageSuckr
 
       resp = Net::HTTP.get_response(URI.parse(url))
       result = JSON.parse(resp.body)
-      result["responseData"]["results"][rand(params[:rsz].to_i)]["url"]
+      result_size = result["responseData"]["results"].count
+      result["responseData"]["results"][rand(result_size)]["url"]
     end
 
     def get_image_content(params = {})
