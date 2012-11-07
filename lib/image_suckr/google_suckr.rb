@@ -24,7 +24,9 @@ module ImageSuckr
 
       resp = Net::HTTP.get_response(URI.parse(url))
       result = JSON.parse(resp.body)
-      result_size = result["responseData"]["results"].count
+      response_data = result["responseData"]
+
+      result_size = response_data["results"].count
       result["responseData"]["results"][rand(result_size)]["url"]
     end
 
