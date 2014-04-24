@@ -21,11 +21,19 @@ module ImageSuckr
       params["q"] = rand(1000).to_s if params["q"].nil?
 
       url = "http://ajax.googleapis.com/ajax/services/search/images?" + params.to_query
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Get.new(uri.request_uri)
+      request.initialize_http_header({"User-Agent" => "Ruby"})
+      
+      response = http.request(request)
+      result = JSON.parse(response.body)
 
-      resp = Net::HTTP.get_response(URI.parse(url))
-      result = JSON.parse(resp.body)
       response_data = result["responseData"]
-
+      if response_data.nil?
+        sleep(5)
+        get_image_url(params) 
+      end
       result_size = response_data["results"].count
       result["responseData"]["results"][rand(result_size)]["url"]
     end
@@ -35,7 +43,11 @@ module ImageSuckr
     end
     
     def get_image_file(params = {})
-      open(URI.parse(get_image_url(params)))
+      begin
+        open(URI.parse(get_image_url(params)))
+      rescue 
+        get_image_file(params) 
+      end
     end
 
   end
