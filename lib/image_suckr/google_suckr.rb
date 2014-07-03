@@ -27,7 +27,11 @@ module ImageSuckr
       response_data = result["responseData"]
 
       result_size = response_data["results"].count
-      result["responseData"]["results"][rand(result_size)]["url"]
+      if result_size > 0
+        result["responseData"]["results"][rand(result_size)]["url"]
+      else
+        nil
+      end
     end
 
     def get_image_content(params = {})
