@@ -24,21 +24,14 @@ module ImageSuckr
 
       resp = Net::HTTP.get_response(URI.parse(url))
       result = JSON.parse(resp.body)
-      if result.nil?
-        return nil
-      end
+      return nil if result.nil?
 
       response_data = result["responseData"]
-      if response_data.nil?
-        return nil
-      end
+      return nil if response_data.nil?
 
       result_size = response_data["results"].count
-      if result_size > 0
-        result["responseData"]["results"][rand(result_size)]["url"]
-      else
-        nil
-      end
+      return nil unless result_size > 0
+      result["responseData"]["results"][rand(result_size)]["url"]
     end
 
     def get_image_content(params = {})
