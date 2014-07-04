@@ -5,43 +5,43 @@ describe "ImageSuckr" do
     it "should have set the default parameters" do
       image = ImageSuckr::GoogleSuckr.new
 
-      image.default_params.should_not be_nil
+      expect(image.default_params).to be_truthy
     end
 
     it "should have default values" do
       image = ImageSuckr::GoogleSuckr.new
 
-      image.default_params[:rsz].should be_eql("8")
-      image.default_params[:v].should be_eql("1.0")
+      expect(image.default_params[:rsz]).to be_eql("8")
+      expect(image.default_params[:v]).to be_eql("1.0")
     end
 
     it "should provide access to override default params" do
       params = {:rsz => "6", :v => "1.1", :as_filetype => "png"}
       image = ImageSuckr::GoogleSuckr.new
-      
-      image.default_params[:rsz].should be_eql "8"
+
+      expect(image.default_params[:rsz]).to be_eql "8"
       image.default_params = params
-      image.default_params[:rsz].should be_eql "6"
+      expect(image.default_params[:rsz]).to be_eql "6"
     end
 
     it "should override the default values" do
       params = {:rsz => "6", :v => "1.1", :as_filetype => "png"}
       image = ImageSuckr::GoogleSuckr.new(params)
-      
-      image.default_params[:v].should be_eql params[:v]
-      image.default_params[:rsz].should be_eql params[:rsz]
+
+      expect(image.default_params[:v]).to be_eql params[:v]
+      expect(image.default_params[:rsz]).to be_eql params[:rsz]
     end
 
-    it "should return a valid URL" do
+    it "should return a valid URL or nil" do
       image = ImageSuckr::GoogleSuckr.new
-      open(URI.parse(image.get_image_url)).should be_a Tempfile
+      expect(open(URI.parse(image.get_image_url))).to be_a(Tempfile).or be_nil
     end
 
-    it "should return a temp file object" do
+    it "should return a temp file object or nil" do
       image = ImageSuckr::GoogleSuckr.new
       file = image.get_image_file
 
-      file.should be_a Tempfile
+      expect(file).to be_a(Tempfile).or be_nil
     end
 
   end
