@@ -1,5 +1,5 @@
 module ImageSuckr
-  
+
   class GoogleSuckr
     attr_accessor :default_params
 
@@ -24,16 +24,27 @@ module ImageSuckr
 
       resp = Net::HTTP.get_response(URI.parse(url))
       result = JSON.parse(resp.body)
+      if result.nil?
+        return nil
+      end
+
       response_data = result["responseData"]
+      if response_data.nil?
+        return nil
+      end
 
       result_size = response_data["results"].count
-      result["responseData"]["results"][rand(result_size)]["url"]
+      if result_size > 0
+        result["responseData"]["results"][rand(result_size)]["url"]
+      else
+        nil
+      end
     end
 
     def get_image_content(params = {})
       Net::HTTP.get_response(URI.parse(get_image_url(params))).body
     end
-    
+
     def get_image_file(params = {})
       open(URI.parse(get_image_url(params)))
     end
